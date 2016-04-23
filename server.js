@@ -2,13 +2,15 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var client = require('twilio')('ACb823a8d67e74c969788db57ac1f97ae4', '172ef55c130b6ce63f2d47033e4e959a');
+var path = require('path');
+var client = require('twilio')('ACCOUNTSID', 'AuthToken');
 
 var port = process.env.PORT || 8080;
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
     res.json({ message: 'TWILIO TEST' });
